@@ -36,7 +36,7 @@ AI-generated observations about the state of the crop or agroforestry system.
 
 ## Architecture Diagram
 
-
+![Alt Text](IMG-20260606-WA0003.jpg)
 
 
 
