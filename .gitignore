@@ -3,6 +3,5 @@ venv/
 __pycache__/
 *.pyc
 *.pkl
-models/
 assets/
 .ipynb_checkpoints/

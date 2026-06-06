@@ -13,7 +13,9 @@ from model import engineer_features, generate_advisory
 # Auto-train model if not already trained
 MODEL_PATH = "/models/risk_model.pkl"
 if not os.path.exists(MODEL_PATH):
+    print("Model not found - training now...")
     train_and_save()
+    print("Training complete.")
 
 risk_model = joblib.load(MODEL_PATH)
 LABELS     = ["Low Risk", "Moderate Risk", "High Risk"]
