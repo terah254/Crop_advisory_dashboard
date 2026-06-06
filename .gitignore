@@ -5,3 +5,4 @@ __pycache__/
 *.pkl
 assets/
 .ipynb_checkpoints/
+hf-space/

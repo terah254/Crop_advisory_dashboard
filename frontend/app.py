@@ -28,7 +28,8 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-API_URL = "http://127.0.0.1:8000"   # change to Railway URL when deployed
+API_URL = "https://cropadvisorydashboard-production.up.railway.app"   # change to Railway URL when deployed
+
 
 st.title("🌾 Crop Advisory Intelligence Dashboard")
 st.caption("Powered by WeatherAI Geo-Intelligence APIs + ML Risk Modeling")
