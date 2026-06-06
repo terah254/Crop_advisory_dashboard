@@ -4,8 +4,16 @@ from sklearn.model_selection import train_test_split
 import joblib
 import os
 
-def train_and_save():
-    print("Training model...")
+def train_and_save(model_path=None):
+    # If no path given, build absolute path relative to this file
+    if model_path is None:
+        BASE_DIR   = os.path.dirname(os.path.abspath(__file__))
+        model_path = os.path.join(BASE_DIR, "models", "risk_model.pkl")
+
+    # Create models folder if it doesn't exist
+    os.makedirs(os.path.dirname(model_path), exist_ok=True)
+
+    print(f"Training model and saving to {model_path}...")
     np.random.seed(42)
     N = 2000
 
@@ -25,7 +33,8 @@ def train_and_save():
     risk[wind_max > 45]      += 1
     risk = np.clip(risk, 0, 2)
 
-    X = np.column_stack([temp_max, temp_min, precipitation, precip_prob, wind_max])
+    X = np.column_stack([temp_max, temp_min, precipitation,
+                         precip_prob, wind_max])
     y = risk
 
     X_train, X_test, y_train, y_test = train_test_split(
@@ -37,9 +46,9 @@ def train_and_save():
     )
     model.fit(X_train, y_train)
 
-    os.makedirs("models", exist_ok=True)
-    joblib.dump(model, "models/risk_model.pkl")
-    print("Model saved to models/risk_model.pkl")
+    joblib.dump(model, model_path)
+    print(f"Model saved successfully to {model_path}")
+    return model
 
 if __name__ == "__main__":
     train_and_save()
