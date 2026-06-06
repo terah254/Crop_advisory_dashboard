@@ -5,13 +5,23 @@ import numpy as np
 import os
 import traceback
 from dotenv import load_dotenv
-
+from train_model import train_and_save
 from weather import fetch_forecast, fetch_current
 from trees import analyze_farm_image
 from model import engineer_features, generate_advisory
 
+# Auto-train model if not already trained
+MODEL_PATH = "/models/risk_model.pkl"
+if not os.path.exists(MODEL_PATH):
+    train_and_save()
+
+risk_model = joblib.load(MODEL_PATH)
+LABELS     = ["Low Risk", "Moderate Risk", "High Risk"]
+FEATURE_COLS = ["temp_max", "temp_min", "precipitation_sum", "precipitation_probability", "wind_max"]
+
+
 # Load environment variables
-load_dotenv("../.env")
+load_dotenv()  # Railway injects env vars directly, no .env file needed, but this allows local dev with a .env file containing WEATHER_AI_KEY=your_key_here
 
 app = FastAPI(
     title="Crop Advisory API",
