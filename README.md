@@ -1,7 +1,3 @@
-## Live Demo
-- Frontend:https://huggingface.co/spaces/terah254/crop-advisory-dashboard
-- Backend API:https://cropadvisorydashboard-production.up.railway.app
-- API Docs:https://cropadvisorydashboard-production.up.railway.app/docs
 
 
 # 🌾 Crop Advisory Intelligence Dashboard
